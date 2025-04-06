@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="html2canvas.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+</head>
+<body>
+    <div id="app">
+        <label for="checkboxColorMode">activer le mode coloration</label>
+        <input type="checkbox" id="checkboxColorMode" v-model="colorMode">
+        <div id="toolBar">
+            <button @click="resetGridAndIndex">Réinitialiser</button>
+            <button @click="validGrid">Expoter la grille </button>
+            <button @click="zoomMinnus">Zoom -</button>
+            <button @click="zoomPlus">Zoom +</button>
+            <input type="file" id="fileInput" @change="loadImage">
+            <label for="fileInput">Importer une image</label>
+        </div>
+
+
+        <canvas id="previewCanvas" with="25" height="25">
+            Désolé , votre navigateur ne prneds pas en charge html5.
+        </canvas>
+    </div>
+</body>
+<script>
+    const app = Vue.createApp({
+    data() {
+        return {
+          zoom:75,
+          isMouseDown:false,
+          
+        }
+    },
+    mounted:function(){
+
+    },
+    methods:{
+        mouseDown:function(event){
+            this.isMouseDown = true;
+        },
+        mouseUp:function(event){
+            this.isMouseDown = false;
+        },
+        resetGridAndIndex:function(){
+            // this.grid = [];
+            // this.index = [];
+        },
+        validGrid:function(){
+            
+        },
+        zoomMinnus:function(){
+            this.mouseUp()
+            if(this.zoom >=65){
+                this.zoom -= 5;
+            }
+        },
+        zoomPlus:function(){
+            this.mouseUp()
+            if(this.zoom <= 100){
+                this.zoom += 5;
+            }
+        },
+        loadImage:function(event){
+            // const file = event.target.files[0];
+            // if(file){
+            //     const reader = new FileReader();
+                
+            // }
+        }
+        
+
+    }
+    })
+    app.mount('#app')
+</script>
+</html>
